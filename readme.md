@@ -1,4 +1,4 @@
-# Football (Soccer) Highlights Web App
+# ⚽Football (Soccer) Highlights Web App
 
 ## Overview
 
