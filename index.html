@@ -44,10 +44,12 @@
   <section class="hero">
     <div class="hero-bg-text" aria-hidden="true">HIGHLIGHTS</div>
     <div class="hero-content">
-      <h1 class="hero-title">Live Football<br/><em>Highlights</em></h1>
-      <p class="hero-sub">Goals, replays & match highlights from the world's top leagues — updated in real time.</p>
+      <p class="hero-kicker">Matchday Feed</p>
+      <h1 class="hero-title">Football<br/><em>Highlights</em></h1>
+      <p class="hero-sub" id="heroSub">Browse football highlight reels from top leagues. Add a ScoreBat token to switch this demo into a live feed.</p>
 
       <div class="search-bar">
+        <label class="sr-only" for="searchInput">Search highlights</label>
         <span class="search-icon">🔍</span>
         <input
           type="text"
@@ -58,12 +60,14 @@
         />
         <button class="clear-btn" id="clearSearch" aria-label="Clear search" hidden>✕</button>
       </div>
+
+      <p class="data-mode-note" id="dataModeNote" aria-live="polite"></p>
     </div>
 
     <div class="hero-stats" id="heroStats">
       <div class="stat"><span class="stat-num" id="statTotal">—</span><span class="stat-label">Highlights</span></div>
       <div class="stat"><span class="stat-num" id="statLeagues">—</span><span class="stat-label">Leagues</span></div>
-      <div class="stat"><span class="stat-num" id="statToday">—</span><span class="stat-label">Today</span></div>
+      <div class="stat"><span class="stat-num" id="statToday">—</span><span class="stat-label" id="statTodayLabel">Today</span></div>
     </div>
   </section>
 
@@ -102,7 +106,7 @@
       <span class="empty-icon">🔍</span>
       <h2>No results found</h2>
       <p>Try a different search term or league.</p>
-      <button class="retry-btn" onclick="resetFilters()">Clear Filters</button>
+      <button class="retry-btn" id="clearFiltersBtn">Clear Filters</button>
     </div>
 
     <div class="video-grid" id="videoGrid" hidden></div>
@@ -121,7 +125,7 @@
       </div>
       <div class="modal-video" id="modalVideo"></div>
       <div class="modal-actions">
-        <button class="fav-btn" id="favBtn" onclick="toggleFavorite()">
+        <button class="fav-btn" id="favBtn">
           <span id="favIcon">🤍</span> <span id="favLabel">Add to Favorites</span>
         </button>
         <span class="modal-side-url" id="modalUrl"></span>
@@ -146,9 +150,15 @@
 
   <!-- ── FOOTER ── -->
   <footer class="site-footer">
-    <p>Data via <a href="https://www.scorebat.com/video-api/" target="_blank" rel="noopener">ScoreBat Video API</a> · Built by Ishaan Gupta</p>
+    <p>Compatible with the <a href="https://www.scorebat.com/video-api/" target="_blank" rel="noopener">ScoreBat Video API</a> · Built by Ishaan Gupta</p>
   </footer>
 
+  <script>
+    window.GOALREEL_CONFIG = window.GOALREEL_CONFIG || {};
+    // Optional live mode:
+    // window.GOALREEL_CONFIG.scorebatToken = "YOUR_SCOREBAT_TOKEN";
+    // window.GOALREEL_CONFIG.scorebatFeed = "free-feed";
+  </script>
   <script src="script.js"></script>
 </body>
 </html>

@@ -1,86 +1,84 @@
-# ⚽ Football (Soccer) Highlights Web App
+# Football (Soccer) Highlights Web App
 
-## 📌 Project Overview
+## Overview
 
-This project is a web application that allows users to explore football (soccer) match highlights, goals, and key moments from top leagues like the Premier League, Bundesliga, Serie A, and more.
+This project is a static frontend for browsing football highlight cards, filtering by league, searching by team, and saving favorites locally.
 
-The application fetches real-time data using a public API and displays it in an interactive and user-friendly interface.
+By default, the app runs in a clearly labeled demo mode with curated sample data. If you provide a ScoreBat token, it can also fetch the live `free-feed` API directly in the browser.
 
----
+## Current Behavior
 
-## 🎯 Objective
+- Demo mode is the default and uses built-in sample matches.
+- Live mode activates only when `window.GOALREEL_CONFIG.scorebatToken` is set.
+- If the live request fails, the UI falls back to demo data instead of breaking.
+- Video embeds are parsed and host-whitelisted before rendering.
 
-The goal of this project is to demonstrate:
+## Features
 
-* API integration using JavaScript (`fetch`)
-* Dynamic UI rendering
-* Use of array higher-order functions (HOFs)
-* Responsive and modern web design
+- Browse football highlights in a responsive card grid
+- Filter by league tabs
+- Search by team, match, or competition
+- Sort by date or title
+- Save favorites in `localStorage`
+- Toggle between dark and light themes
+- Show source-aware hero stats
 
----
+## Technologies Used
 
-## 🌐 API Used
+- HTML
+- CSS
+- JavaScript
+- Fetch API for optional live ScoreBat data
 
-* Football (Soccer) Videos API
-  (Provides match highlights, goals, and related video content)
+## Project Structure
 
----
-
-## ✨ Planned Features
-
-* 📺 View football match highlights and videos
-* 🔍 Search matches by team or league
-* 🎯 Filter videos based on leagues (Premier League, Bundesliga, etc.)
-* 📊 Sort videos (e.g., latest, alphabetical)
-* ❤️ Like / Favorite videos (optional feature)
-* 🌙 Dark Mode / Light Mode toggle (optional feature)
-
----
-
-## 🛠️ Technologies Used
-
-* HTML
-* CSS
-* JavaScript
-* Fetch API
-
----
-
-## 🧩 Project Structure
-
-```
+```text
 /project-folder
-│── index.html
-│── style.css
-│── script.js
-│── README.md
+|-- index.html
+|-- style.css
+|-- script.js
+|-- readme.md
 ```
 
----
-
-## 🚀 How to Run the Project
+## Running The Project
 
 1. Clone the repository:
 
-   ```
+   ```bash
    git clone https://github.com/ishaangupta257-sudo/Football-Soccer-Highlights-Web-App
    ```
-2. Open the project folder
-3. Run `index.html` in your browser
 
+2. Open the project folder.
+3. Open `index.html` in your browser for demo mode.
 
-## 💡 Future Improvements
+For live mode, serve the folder from a local web server so browser fetch behavior is more reliable. For example:
 
-* Pagination for large data
-* Loading indicators
-* Local storage for favorites
-* Debouncing for search optimization
+```bash
+python3 -m http.server
+```
 
----
+Then open the local server URL in your browser.
 
-## 👨‍💻 Author
+## Enabling Live ScoreBat Data
 
-* Ishaan Gupta
+Add your token before the main script in [index.html](/Users/ishaangupta/Documents/Football%20(Soccer)%20Highlights%20Web%20App/index.html):
 
----
+```html
+<script>
+  window.GOALREEL_CONFIG = window.GOALREEL_CONFIG || {};
+  window.GOALREEL_CONFIG.scorebatToken = "YOUR_SCOREBAT_TOKEN";
+  window.GOALREEL_CONFIG.scorebatFeed = "free-feed";
+</script>
+```
 
+If no token is provided, the app stays in demo mode and says so in the UI.
+
+## Notes
+
+- The third hero stat shows `Today` in live mode.
+- In demo mode, that stat switches to `Latest Matchday` so it stays meaningful with sample data.
+- Favorites and theme preference are stored in `localStorage`.
+
+## Author
+
+Ishaan Gupta
